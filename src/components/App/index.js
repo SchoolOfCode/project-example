@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+
 import './App.css';
 import List from './List';
 
@@ -54,8 +57,13 @@ export default class App extends Component {
     return (
       <div>
         <form className="App" onSubmit={this.onSubmit}>
-          <input value={this.state.term} onChange={this.onChange} />
-          <button>Submit</button>
+          <TextField
+            value={this.state.term}
+            onChange={this.onChange}
+            hintText="I need to..."
+            floatingLabelText="Add your todo"
+          />
+          <RaisedButton label="Add" primary={true} onClick={this.onSubmit} />
         </form>
         <List items={this.state.items} onComplete={this.onComplete} />
       </div>

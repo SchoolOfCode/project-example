@@ -1,37 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {List, ListItem} from 'material-ui/List';
+import IconButton from 'material-ui/IconButton';
+import CheckBox from 'material-ui/svg-icons/toggle/check-box';
+import EmptyCheckBox from 'material-ui/svg-icons/toggle/check-box-outline-blank';
 
-const List = (props) => {
-  const style = {
-    incomplete: {
-      color: 'red',
-    },
-    complete: {
-      color: 'green',
-    },
-  };
-  return (
-    <ul>
-      {props.items.map((item, index) => (
-        <li key={index}>
-          {item.todo}
-          <button
-            style={style[item.complete ? 'complete' : 'incomplete']}
-            onClick={() => props.onComplete(index)}
-          >
-            {item.complete ? 'Done' : 'To Do'}
-          </button>
-        </li>
-      ))}
-    </ul>
-  );
-};
+const MyList = (props) => (
+  <List>
+    {props.items.map((item, index) => (
+      <ListItem
+        key={index}
+        primaryText={item.todo}
+        rightIcon={<IconButton>
+          {item.complete ? <CheckBox /> : <EmptyCheckBox />}
+        </IconButton>}
+        onClick={() => props.onComplete(index)}
+      />
+    ))}
+  </List>
+);
 
-List.propTypes = {
+MyList.propTypes = {
   items: PropTypes.arrayOf(PropTypes.shape({
     todo: PropTypes.string,
     complete: PropTypes.bool,
   })).isRequired,
 };
 
-export default List;
+export default MyList;
