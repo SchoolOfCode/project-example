@@ -8,6 +8,7 @@ module.exports = {
     "rules": {
       // disable rules from base configurations
       "react/jsx-filename-extension": "off",
+      "react/no-array-index-key": "off",
       "import/no-unresolved": "off",
       "import/extensions": "off"
     }
